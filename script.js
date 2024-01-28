@@ -84,39 +84,42 @@ const cityNames = [
   'Düzce',
 ];
 
+//klavye olaylarını dinleyerek kullanıcının arama çubuğu üzerinde gezinmesini ve seçim yapmasını sağlar.
 function handleKeyDown(event) {
   const suggestions = document.querySelectorAll('.suggestion');
   const selectedSuggestion = document.querySelector('.suggestion.selected');
 
-  if (event.key === 'ArrowDown') {
-    if (!selectedSuggestion) {
-      suggestions[0].classList.add('selected');
+  if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+    let index = Array.from(suggestions).indexOf(selectedSuggestion);
+
+    if (event.key === 'ArrowDown') {
+      index = (index + 1) % suggestions.length;
     } else {
-      const nextSuggestion = selectedSuggestion.nextElementSibling;
-      if (nextSuggestion) {
-        selectedSuggestion.classList.remove('selected');
-        nextSuggestion.classList.add('selected');
-      }
+      index = (index - 1 + suggestions.length) % suggestions.length;
     }
-  } else if (event.key === 'ArrowUp') {
-    if (selectedSuggestion) {
-      const prevSuggestion = selectedSuggestion.previousElementSibling;
-      if (prevSuggestion) {
-        selectedSuggestion.classList.remove('selected');
-        prevSuggestion.classList.add('selected');
+
+    suggestions.forEach((suggestion, i) => {
+      if (i === index) {
+        suggestion.classList.add('selected');
+        setSearchValue(suggestion.innerText);
+      } else {
+        suggestion.classList.remove('selected');
       }
-    }
+    });
   } else if (event.key === 'Enter') {
+    suggestionsContainer.style.display = 'none';
     if (selectedSuggestion) {
       setSearchValue(selectedSuggestion.innerText);
     }
     search();
+  } else {
+    setSearchValue(searchInput.value);
+    showSuggestions();
   }
 }
-
+//Arama önerileri arasında seçim yaparken veya bir öneriye tıklandığında kullanılır
 function setSearchValue(value) {
   searchInput.value = value;
-  suggestionsContainer.style.display = 'none';
 }
 
 function search() {
@@ -124,8 +127,21 @@ function search() {
   alert(`Arama yapılan şehir: ${searchTerm}`);
 }
 
+//önerilenler datalarına tıklama işlevini ekler
+function addSuggestionClickListener(suggestion) {
+  suggestion.addEventListener('click', () => {
+    setSearchValue(suggestion.innerText);
+    search();
+  });
+}
+
+//arama çubuğuna girilen değere göre şehir isimleri arasından filtrelenen önerileri gösterir.
 function showSuggestions() {
   const searchTerm = searchInput.value.toLowerCase();
+  if (!searchTerm.trim()) {
+    suggestionsContainer.style.display = 'none';
+    return;
+  }
   const filteredCities = cityNames.filter((city) => city.toLowerCase().startsWith(searchTerm));
 
   suggestionsContainer.innerHTML = '';
@@ -134,24 +150,30 @@ function showSuggestions() {
     const suggestion = document.createElement('div');
     suggestion.classList.add('suggestion');
     suggestion.innerText = city;
-    suggestion.addEventListener('click', () => setSearchValue(city));
+    addSuggestionClickListener(suggestion);
     suggestionsContainer.appendChild(suggestion);
   });
 
   suggestionsContainer.style.display = filteredCities.length > 0 ? 'block' : 'none';
 }
 
-function istekBildir() {
+function requestButton() {
   alert('İstek Bildir butonuna tıklandı!');
 }
 
-function sorunBildir() {
+function issueButton() {
   alert('Sorun Bildir butonuna tıklandı!');
 }
 
-function tumKayitlar() {
+function allRecords() {
   alert('Tüm Kayıtlarım butonuna tıklandı!');
 }
 
-searchInput.addEventListener('input', showSuggestions);
+function serviceButton() {
+  alert('Hizmet kataloğu butonuna tıklandı!');
+}
+function profileButton() {
+  alert('Profil butonuna tıklandı!');
+}
+searchInput.addEventListener('input', showSuggestions); // Arama çubuğuna herhangi bir giriş yapıldığında önerileri güncellemek için
 searchInput.addEventListener('keydown', handleKeyDown);

@@ -10,8 +10,8 @@
     <header>
       <img src="logo.png" alt="Logo" />
       <div class="header-buttons">
-        <button class="transparent-button">Hizmet Katalogu</button>
-        <button class="transparent-button"><span class="profile-icon">GÜ</span> Gülşah Özakıncı</button>
+        <button class="transparent-button" onclick="serviceButton()">Hizmet Katalogu</button>
+        <button class="transparent-button" onclick="profileButton()"><span class="profile-icon">GÜ</span> Gülşah Özakıncı</button>
       </div>
     </header>
 
@@ -24,14 +24,14 @@
           <div id="suggestions-container"></div>
 
           <div id="button-container">
-            <button class="btn" style="background-color: #4cb9de; margin-right: 30px" onclick="istekBildir()">
+            <button class="btn" style="background-color: #4cb9de; margin-right: 30px" onclick="requestButton()">
               <img src="request.svg" alt="İstek Bildir Icon" class="button-icon" />İstek Bildir
             </button>
-            <button class="btn" style="background-color: #95ca34; margin-right: 30px" onclick="sorunBildir()">
-              <img src="problem.svg" alt="İstek Bildir Icon" class="button-icon" />Sorun Bildir
+            <button class="btn" style="background-color: #95ca34; margin-right: 30px" onclick="issueButton()">
+              <img src="problem.svg" alt="Sorun Bildir Icon" class="button-icon" />Sorun Bildir
             </button>
-            <button class="btn" style="background-color: #f66570" onclick="tumKayitlar()">
-              <img src="books.svg" alt="İstek Bildir Icon" class="button-icon" />Tüm Kayıtlarım
+            <button class="btn" style="background-color: #f66570" onclick="allRecords()">
+              <img src="books.svg" alt="Tüm kayıtlar Icon" class="button-icon" />Tüm Kayıtlarım
             </button>
           </div>
         </div>
