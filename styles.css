@@ -61,7 +61,7 @@ header img {
   background-image: url('arka_plan.png');
   background-size: cover;
   background-position: center;
-  height: 40vh;
+  height: 35vh;
 }
 
 .background-img::before {
@@ -70,7 +70,7 @@ header img {
   /* top: 0;
   left: 0;*/
   width: 100%;
-  height: 40vh;
+  height: 35vh;
   background-color: #255fac;
   opacity: 0.4;
 }
@@ -80,7 +80,7 @@ header img {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: -30vh;
+  margin-top: -14%;
   position: relative;
   z-index: 1;
 }
@@ -117,19 +117,10 @@ header img {
 }
 
 #button-container {
-  margin-top: 20px;
+  margin-top: 2%;
   display: flex;
   justify-content: space-around;
 }
-
-/*#button-container button {
-  padding: 10px;
-  font-size: 16px;
-  background-color: #333;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-}*/
 
 #suggestions-container {
   position: absolute;
@@ -139,7 +130,6 @@ header img {
   overflow-y: auto;
   display: none;
   width: 650px;
-  margin-top: 8px;
   border-radius: 5px;
   left: 50%;
   transform: translateX(-50%);
@@ -190,14 +180,14 @@ header img {
     font-size: 20px;
   }
   .search-container {
-    margin-top: -45vh;
+    margin-top: -47vh;
   }
   .background-img {
     height: 50vh;
     width: 100%;
   }
   .announcement {
-    margin-top: 13%;
+    margin-top: 20%;
     margin-left: 5%;
   }
 
@@ -222,6 +212,9 @@ header img {
 }
 
 @media only screen and (max-width: 1024px) and (min-width: 800px) {
+  .search-container {
+    margin-top: -30vh;
+  }
   .announcement {
     margin-top: 25%;
     margin-left: 15%;
